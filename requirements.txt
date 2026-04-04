@@ -1,0 +1,10 @@
+rdkit>=2023.09.6
+openff-toolkit>=0.15.0
+openff-interchange>=0.3.20
+openff-units>=0.2.0
+openmm>=8.0
+ambertools>=23.0
+numpy>=1.24
+scipy>=1.10
+meeko>=0.5.1
+gemmi>=0.6

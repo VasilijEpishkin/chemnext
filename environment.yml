@@ -1,0 +1,15 @@
+name: chemnext
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - rdkit>=2023.09.6
+  - openff-toolkit>=0.15.0
+  - openff-interchange>=0.3.20
+  - openff-units>=0.2.0
+  - numpy>=1.24
+  - meeko>=0.5.1
+  - scipy>=1.10
+  - gemmi>=0.6
+  - openmm>=8.0
+  - ambertools>=23.0
