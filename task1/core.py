@@ -59,6 +59,12 @@ def create_interchange(
         ff = ForceField(forcefield)
         topology = Topology.from_molecules([off_mol])
         interchange = ff.create_interchange(topology)
+
+        # Добавляем box vectors — GROMACS 2020+ требует их даже для
+        # непериодических систем. Берём 10 нм — достаточно для любой
+        # малой молекулы в вакууме.
+        interchange.box = [10, 10, 10] * unit.nanometer
+
         return interchange
     except Exception as e:
         logging.error("Ошибка создания Interchange: %s", e)

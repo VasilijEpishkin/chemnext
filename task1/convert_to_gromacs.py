@@ -55,6 +55,13 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Включить подробный вывод (DEBUG)",
     )
+    parser.add_argument(
+        "--limit",
+        "-n",
+        type=int,
+        default=None,
+        help="Ограничить количество обрабатываемых молекул",
+    )
 
     return parser.parse_args()
 
@@ -85,17 +92,30 @@ def main() -> None:
         logging.error("Не найдено молекул в файле %s", args.input)
         sys.exit(1)
 
+    if args.limit:
+        molecules = molecules[:args.limit]
+        logging.info("Ограничение: обрабатываем %d молекул", args.limit)
+
     logging.info("Загружено %d молекул из %s", len(molecules), args.input.name)
 
     results: List[Tuple[str, str, bool]] = []
+    name_counts: dict = {}
 
     for rdkit_mol, name in molecules:
-        logging.info("Обработка молекулы: %s", name)
+        # Обработка дубликатов имён
+        if name in name_counts:
+            name_counts[name] += 1
+            unique_name = name + "_" + str(name_counts[name])
+        else:
+            name_counts[name] = 1
+            unique_name = name
 
-        mol_dir = args.output / name
+        logging.info("Обработка молекулы: %s", unique_name)
+
+        mol_dir = args.output / unique_name
         success, msg = parameterize_molecule(
             rdkit_mol=rdkit_mol,
-            name=name,
+            name=unique_name,
             output_dir=mol_dir,
             forcefield=args.forcefield,
             check_coords=not args.no_coord_check,

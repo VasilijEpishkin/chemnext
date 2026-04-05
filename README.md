@@ -20,6 +20,7 @@ python task1/convert_to_gromacs.py --input input/example.sdf --output output/tas
 | `--no-coord-check` | `False` | Отключить проверку координат |
 | `--log-file` | `logs/parametrization_log.txt` | Путь к лог-файлу |
 | `--verbose`, `-v` | `False` | Подробный DEBUG-вывод |
+| `--limit`, `-n` | `None` | Ограничить количество молекул |
 
 **Выходные данные:** для каждой молекулы создаётся отдельная папка с именем молекулы (`_Name` из SDF), содержащая:
 - `topol.gro` — структура
