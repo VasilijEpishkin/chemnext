@@ -143,6 +143,7 @@ def main() -> None:
         if total - success > 0:
             logging.warning("Некоторые молекулы не удалось параметризовать."
                             " Подробности в логе.")
+            sys.exit(1)
     else:
         logging.error("Нет результатов для обработки")
         sys.exit(1)
