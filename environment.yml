@@ -13,3 +13,4 @@ dependencies:
   - gemmi>=0.6
   - openmm>=8.0
   - ambertools>=23.0
+  - pytest>=8
