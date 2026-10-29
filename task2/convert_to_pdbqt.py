@@ -127,6 +127,7 @@ def main() -> None:
         if total - success > 0:
             logging.warning("Некоторые молекулы не удалось конвертировать."
                             " Подробности в логе.")
+            sys.exit(1)
     else:
         logging.error("Не найдено молекул для обработки")
         sys.exit(1)
